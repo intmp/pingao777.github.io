@@ -3,42 +3,49 @@
 <head>
     <meta charset="utf-8">
     
-    <title>VIM中的正则表达式 | 翱翔的翱</title>
+    <title>VIM中的正则表达式 | 瞎说</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。 本文翻译自http://www.vimregex.com/，算是一">
+    <meta name="description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。">
 <meta name="keywords" content="Vim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VIM中的正则表达式">
-<meta property="og:url" content="http://yoursite.com/2017/11/14/VIM中的正则表达式/index.html">
-<meta property="og:site_name" content="翱翔的翱">
-<meta property="og:description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。 本文翻译自http://www.vimregex.com/，算是一">
+<meta property="og:url" content="https://pingao777.github.io/2017/11/14/VIM中的正则表达式/index.html">
+<meta property="og:site_name" content="瞎说">
+<meta property="og:description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-14T04:38:19.773Z">
+<meta property="og:updated_time" content="2017-11-17T01:30:33.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VIM中的正则表达式">
-<meta name="twitter:description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。 本文翻译自http://www.vimregex.com/，算是一">
-    
-
-    
-        <link rel="alternate" href="/" title="翱翔的翱" type="application/atom+xml" />
+<meta name="twitter:description" content="VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。">
     
 
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/libs/open-sans/styles.css">
     <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-44085500-1', 'auto');
+ga('send', 'pageview');
+
+</script>
     
     
     
@@ -53,7 +60,7 @@
         <div class="outer">
             <a href="/" id="logo">
                 <i class="logo"></i>
-                <span class="site-title">翱翔的翱</span>
+                <span class="site-title">瞎说</span>
             </a>
             <nav id="main-nav">
                 
@@ -89,7 +96,7 @@
 (function ($) {
     $('.search-form').on('submit', function (e) {
         var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        window.location = 'https://www.baidu.com/s?wd=site:pingao777.github.io ' + keyword;
         return false;
     });
 })(jQuery);
@@ -122,7 +129,7 @@
 (function ($) {
     $('.search-form').on('submit', function (e) {
         var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        window.location = 'https://www.baidu.com/s?wd=site:pingao777.github.io ' + keyword;
         return false;
     });
 })(jQuery);
@@ -142,59 +149,20 @@
     <div class="inner profile-inner">
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/avatar.png" />
-            <h2 id="name">wocanmei</h2>
+            <h2 id="name">pingao777</h2>
             <h3 id="title">Web Developer &amp; Designer</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
-            <a id="follow" target="_blank" href="https://github.com/pingao777">关注我</a>
+            <a id="follow" target="_blank" href="http://github.com/pingao777">关注我</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                3
+                8
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                2
+                9
                 <span>标签</span>
             </div>
-        </div>
-        
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/pingao777" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="twitter" class=tooltip>
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="facebook" class=tooltip>
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="dribbble" class=tooltip>
-                            <i class="fa fa-dribbble"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="rss" class=tooltip>
-                            <i class="fa fa-rss"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
         </div>
         
     </div>
@@ -245,26 +213,21 @@
         
             
             <p>VIM作为一款编辑软件有着强大的操作指令，灵活的配置方法，通过适当的组合能够实现令人眼花缭乱的功能，而正则表达式作为一门处理文本和数据的重要工具，和VIM异曲同工，通过元字符的简单组合就可以匹配千变万化的文本和数据，它是如此的强大以至于有些任务如果没有正则表达式几乎没有其他好的方法实现。下面看看这两个强大的武器是如何结合在一起的。</p>
-<p>本文翻译自<a href="http://www.vimregex.com/" target="_blank" rel="external">http://www.vimregex.com/</a>，算是一篇比较全面的VIM正则表达式介绍。</p>
 <a id="more"></a>
+<p>本文翻译自<a href="http://www.vimregex.com/" target="_blank" rel="external">http://www.vimregex.com/</a>，算是一篇比较全面的VIM正则表达式介绍。</p>
 <h3 id="2-介绍"><a href="#2-介绍" class="headerlink" title="2.介绍"></a>2.介绍</h3><h4 id="2-1什么是VIM？"><a href="#2-1什么是VIM？" class="headerlink" title="2.1什么是VIM？"></a>2.1什么是VIM？</h4><p>VIM（VI Improve）是VI编辑器的改进版，它在UNIX中无处不在。VIM由Bram Moolenaar发明，是一款免费的编辑器，当然如果你愿意，可以捐助一部分钱。</p>
 <p>VIM有自己的网站为<a href="http://www.vim.org" target="_blank" rel="external">www.vim.org</a>和<a href="http://www.vim.org/mail.html" target="_blank" rel="external">邮件列表</a>，上面的资料涵盖VIM的方方面面。目前，VIM能够运行在各大操作系统上，甚至是一些linux发型版本（redhat）的默认编辑器。</p>
 <p>VIM拥有现代编辑的许多特点：语法高亮、可以定制化的用户界面、可以方便的与多种IDE集成在一起，从而具有一些更加吸引人的特色，比如故障恢复、自动命令补全、会话管理等。</p>
 <p>VIM拥有庞大的用户群，仅linux用户就超过1000万，这个数字还在进一步增加。</p>
-<p>####2.2关于本教程</p>
-<p>之所以写这个教程，只是因为我爱正则表达式，没有什么能比写出一个精心设计满足需要的正则表达式更让人兴奋的了，我希望这能作为一个引言。</p>
+<h4 id="2-2关于本教程"><a href="#2-2关于本教程" class="headerlink" title="2.2关于本教程"></a>2.2关于本教程</h4><p>之所以写这个教程，只是因为我爱正则表达式，没有什么能比写出一个精心设计满足需要的正则表达式更让人兴奋的了，我希望这能作为一个引言。</p>
 <p>不过说真的，正则表达式作为一个处理文本和数据的工具不是独立存在，而是嵌入在其他的程序语言或工具中，比如UNIX中的著名的grep程序，它根据一定的模式查找文件中的内容。你可以把正则表达式看做一种模式匹配语言，用它来处理一些棘手的文本问题会有意想不到的效果。</p>
-<p>####2.3致谢</p>
-<p>感谢Benji Fisher, Zdenek Sekera, Preben “Peppe” Guldberg, Steve Kirkendall, Shaul Karl（排名不分先后）以及所有给我建议的人。</p>
+<h4 id="2-3致谢"><a href="#2-3致谢" class="headerlink" title="2.3致谢"></a>2.3致谢</h4><p>感谢Benji Fisher, Zdenek Sekera, Preben “Peppe” Guldberg, Steve Kirkendall, Shaul Karl（排名不分先后）以及所有给我建议的人。</p>
 <p>如果你有好的建议或者想法，随时发信给我（olontir at yahoo dot com）。</p>
-<p>###3.替换命令</p>
-<p>####3.1查找/替换</p>
-<blockquote>
+<h3 id="3-替换命令"><a href="#3-替换命令" class="headerlink" title="3.替换命令"></a>3.替换命令</h3><h4 id="3-1查找-替换"><a href="#3-1查找-替换" class="headerlink" title="3.1查找/替换"></a>3.1查找/替换</h4><blockquote>
 <p>:range s[ubstitute]/pattern/string/cgiI<br>c 每次替换都要确认<br>g 替换一行当中所有的匹配项（没有g只替换第一个匹配值，pingao注：注意与%区别）<br>i 忽略大小写<br>I 不忽略大小写</p>
 </blockquote>
 <p>[]中表示可选项</p>
-<p>####3.2范围操作、行地址及标记</p>
-<p>在讲匹配模式之前，先来了解下行地址。一些命令可以接受行范围，这样命令就会限定在这个范围内执行。行范围通常由逗号（，）或者分号（；）分隔的标示符组成，你也可以使用命令<code>mI</code>在当前位置作一个标记，以方便后面使用，”I”可以是任何字母。</p>
+<h4 id="3-2范围操作、行地址及标记"><a href="#3-2范围操作、行地址及标记" class="headerlink" title="3.2范围操作、行地址及标记"></a>3.2范围操作、行地址及标记</h4><p>在讲匹配模式之前，先来了解下行地址。一些命令可以接受行范围，这样命令就会限定在这个范围内执行。行范围通常由逗号（，）或者分号（；）分隔的标示符组成，你也可以使用命令<code>mI</code>在当前位置作一个标记，以方便后面使用，”I”可以是任何字母。</p>
 <table>
 <thead>
 <tr>
@@ -333,9 +296,7 @@
 <p>Tip2：将下面两个快捷键映射放在你的vimrc文件中，<br><code>noremap ;; :%s:::g&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;</code><br><code>noremap ;&#39; :%s:::cg&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;</code></p>
 </blockquote>
 <p>有了这两个快捷键，你会省去不少敲击键盘的时间，它会直接定位到搜索模式那里，输入搜索部分后再输入替换部分然后按回车键。第二个快捷键增加了确认标志。</p>
-<p>###4.模式说明</p>
-<p>####4.1锚</p>
-<p>假设你想把所有的vi替换为VIM，很容易会想到下面的命令，</p>
+<h3 id="4-模式说明"><a href="#4-模式说明" class="headerlink" title="4.模式说明"></a>4.模式说明</h3><h4 id="4-1锚"><a href="#4-1锚" class="headerlink" title="4.1锚"></a>4.1锚</h4><p>假设你想把所有的vi替换为VIM，很容易会想到下面的命令，</p>
 <p><code>s/vi/VIM/g</code></p>
 <p>但是如果你真的这么做了，你会发现，它会把所有vi替换为VIM，甚至vi只是某个单词的一部分，这可能不是你想要的。</p>
 <p>你可能还会想到，在vi两边添加空格来达到想要的效果，</p>
@@ -351,8 +312,7 @@
 <li>最简单的方法是使用<code>i</code>标志， <code>%s:vi:VIM:gi</code></li>
 <li>定义字符类（character class），<code>:%s:[Vv]i:VIM:</code>将会替换所有的Vi和vi</li>
 </ul>
-<p>####4.2转义字符或元字符</p>
-<p>到目前为止，所有的匹配模式（pattern）都是由一些正常字符组成的，而正则表达式的真正强大之处就在于元字符（metacharacter），元字符是是指一些具有特殊含义的字符，从外观上它们的前面常有一个反斜杠，如下表所示，</p>
+<h4 id="4-2转义字符或元字符"><a href="#4-2转义字符或元字符" class="headerlink" title="4.2转义字符或元字符"></a>4.2转义字符或元字符</h4><p>到目前为止，所有的匹配模式（pattern）都是由一些正常字符组成的，而正则表达式的真正强大之处就在于元字符（metacharacter），元字符是是指一些具有特殊含义的字符，从外观上它们的前面常有一个反斜杠，如下表所示，</p>
 <table>
 <thead>
 <tr>
@@ -436,8 +396,7 @@
 <p>匹配一个首字母大写的六字母单词，</p>
 <p><code>\u\w\w\w\w\w</code></p>
 <p>如果你想匹配一个不知道长度的单词或者一个长单词，写出每个<code>\w</code>不是很方便，这就要用到下面介绍的<strong>量词（quantifiers）</strong>概念了。</p>
-<p>####4.3量词、贪婪匹配与惰性匹配</p>
-<p>将一个量词（quantifiers）放置在模式（pattern）一部分后面，就可以限制这部分的重复次数。</p>
+<h4 id="4-3量词、贪婪匹配与惰性匹配"><a href="#4-3量词、贪婪匹配与惰性匹配" class="headerlink" title="4.3量词、贪婪匹配与惰性匹配"></a>4.3量词、贪婪匹配与惰性匹配</h4><p>将一个量词（quantifiers）放置在模式（pattern）一部分后面，就可以限制这部分的重复次数。</p>
 <table>
 <thead>
 <tr>
@@ -531,8 +490,7 @@
 </blockquote>
 <p>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　         -Bram </p>
 <p>但是如果你只想匹配第二个引号的内容呢？或者我们只想改变引号中的一部分内容呢？我们将会用到分组（grouping）和反向引用（backreference），在这之前我们先来看下字符区间的概念（character range）。</p>
-<p>####4.4字符区间</p>
-<p>典型的字符区间：</p>
+<h4 id="4-4字符区间"><a href="#4-4字符区间" class="headerlink" title="4.4字符区间"></a>4.4字符区间</h4><p>典型的字符区间：</p>
 <p><code>[012345]</code>将会匹配括号中的任意一个，<code>[0-5]</code>与之等价，类似地，我们可以定义全部小写字母的字符区间<code>[a-z]</code>，所有的字母<code>[a-zA-Z]</code>，数字加字母<code>[0-9a-zA-Z]</code>，根据你所在的区域，你可以在字符区间添加à, Ö, ß这样的非ASCII字符。</p>
 <p>注意字符区间仅仅匹配其中的一个字符，<code>[0123]</code>和<code>0123</code>不同，顺序对于一个字符区间不重要，<code>[0123]</code>和<code>[0231]</code>一样，而<code>0123</code>和<code>0231</code>是两个截然不同的模式。看看执行下面的句子会发生什么，</p>
 <p><code>s:[65]:Dig:g</code></p>
@@ -564,8 +522,7 @@
 <p>现在考虑一个现实的例子，假设有一个语法检测器想找出所有不以大写字母开头的句子，下面的表达式可以实现这一点，</p>
 <p><code>\.\s\+[a-z]</code></p>
 <p>这将会匹配一个句号、一个或多个空格然后是一个小写字母，我们现在知道如何找到错误，下面来看看如何修复它。这里就需要我们记住前面的匹配值以便后面可以重新调用它，这就是反向引用大显身手的地方了。</p>
-<p>####4.5分组和反向引用</p>
-<p>你可以使用<code>\(\)</code>对模式匹配项进行分组，然后通过<code>\1, \2 ... \9</code>来引用。一个典型的例子为交换每一行的头两个单词，</p>
+<h4 id="4-5分组和反向引用"><a href="#4-5分组和反向引用" class="headerlink" title="4.5分组和反向引用"></a>4.5分组和反向引用</h4><p>你可以使用<code>\(\)</code>对模式匹配项进行分组，然后通过<code>\1, \2 ... \9</code>来引用。一个典型的例子为交换每一行的头两个单词，</p>
 <p><code>s:\(\w\+\)\(\s\+\)\(\w\+\):\3\2\1:</code></p>
 <p><code>\1</code>代表第一个单词，<code>\2</code>代表一个或多个空白符，<code>\3</code>代表第二个单词。如何知道哪个数字代表哪个匹配项，从左往右数<code>\(</code>的个数。</p>
 <table>
@@ -625,15 +582,13 @@
 <p>看下上面的语法检查问题完整的表达式，</p>
 <p><code>s:\([.!?]\)\s\+\([a-z]\):\1  \u\2:g</code></p>
 <p>我们将0个或多个空白符替换为两个空格。</p>
-<p>####4.6备选</p>
-<p>备选（alternation）是指用<code>\|</code>将多个表达式结合在一起，这样一旦有一个表达式匹配到，则整个表达式匹配成功，返回这个表达式匹配内容。（pingao注：类似于逻辑操作符|）</p>
+<h4 id="4-6备选"><a href="#4-6备选" class="headerlink" title="4.6备选"></a>4.6备选</h4><p>备选（alternation）是指用<code>\|</code>将多个表达式结合在一起，这样一旦有一个表达式匹配到，则整个表达式匹配成功，返回这个表达式匹配内容。（pingao注：类似于逻辑操作符|）</p>
 <p><code>\(Date:\|Subject:\|From:\)\(\s.*\)</code></p>
 <p>上面的表达式将会把邮件的头部和内容放在<code>\1</code>和<code>\2</code>中，对于备选需要注意的是，它不是贪婪匹配的，一旦多个表达式有一个表达式匹配到，后面的表达式将不再匹配，这意味着对于一个备选，表达式的顺序十分重要。</p>
 <blockquote>
 <p>Tip3:将<code>\(\)</code>快速的放在表达式中，<br><code>cmap ;\ \(\)&lt;Left&gt;&lt;Left&gt;</code></p>
 </blockquote>
-<p>####4.7正则表达式操作符的优先级</p>
-<p>和算数表达式一样，正则表达式的运算符也有一定的优先级，下表从高到低列出了各个操作的优先级，</p>
+<h4 id="4-7正则表达式操作符的优先级"><a href="#4-7正则表达式操作符的优先级" class="headerlink" title="4.7正则表达式操作符的优先级"></a>4.7正则表达式操作符的优先级</h4><p>和算数表达式一样，正则表达式的运算符也有一定的优先级，下表从高到低列出了各个操作的优先级，</p>
 <table>
 <thead>
 <tr>
@@ -665,9 +620,7 @@
 </tr>
 </tbody>
 </table>
-<p>###5.全局命令</p>
-<p>####5.1全局搜索及执行</p>
-<p>我想介绍另一个用处广泛功能强大的命令，</p>
+<h3 id="5-全局命令"><a href="#5-全局命令" class="headerlink" title="5.全局命令"></a>5.全局命令</h3><h4 id="5-1全局搜索及执行"><a href="#5-1全局搜索及执行" class="headerlink" title="5.1全局搜索及执行"></a>5.1全局搜索及执行</h4><p>我想介绍另一个用处广泛功能强大的命令，</p>
 <blockquote>
 <p>:range g[lobal][!]/pattern/cmd<br>在range的范围内，在pattern匹配行执行Ex cmd（默认为:p[rint]），如果pattern前面加上一个!，表示pattern没有匹配的行。</p>
 </blockquote>
@@ -676,8 +629,7 @@
 <p><code>:s[ubstitute], :co[py] , :d[elete], :w[rite]</code></p>
 <p>非Ex command（normal command）也可以执行，</p>
 <p><code>:norm[al]non-ex command</code></p>
-<p>####5.2例子</p>
-<p><code>:g/^$/ d</code></p>
+<h4 id="5-2例子"><a href="#5-2例子" class="headerlink" title="5.2例子"></a>5.2例子</h4><p><code>:g/^$/ d</code></p>
 <p>-删除文件中所以的空行</p>
 <p><code>:g/^$/,/./-j</code></p>
 <p>-将多个空行转换为一个空行</p>
@@ -691,13 +643,10 @@
 <p>将所有Error行拷贝到文件的最后，然后将Error替换为copy of the error。s命令没有指定地址，默认为当前行。</p>
 <p><code>:g/^Error:/ s /Error/copy of the error/ | copy $</code></p>
 <p>将上面的操作顺序颠倒了一下，先替换后复制。</p>
-<p>###6.更多的例子</p>
-<p>####6.1小贴士</p>
-<p>(1)由Antonio Colombo提供</p>
+<h3 id="6-更多的例子"><a href="#6-更多的例子" class="headerlink" title="6.更多的例子"></a>6.更多的例子</h3><h4 id="6-1小贴士"><a href="#6-1小贴士" class="headerlink" title="6.1小贴士"></a>6.1小贴士</h4><p>(1)由Antonio Colombo提供</p>
 <p>去掉所有行尾部的空白符，</p>
 <p><code>s:\s*$::</code>或者<code>s:\s\+$::</code></p>
-<p>####6.2创建一个大纲</p>
-<p>这个例子需要你有点html的背景，我们需要将<code>&lt;h1&gt;</code>和<code>&lt;h2&gt;</code>标签中的标题和副标题分离出来，做一个表格。</p>
+<h4 id="6-2创建一个大纲"><a href="#6-2创建一个大纲" class="headerlink" title="6.2创建一个大纲"></a>6.2创建一个大纲</h4><p>这个例子需要你有点html的背景，我们需要将<code>&lt;h1&gt;</code>和<code>&lt;h2&gt;</code>标签中的标题和副标题分离出来，做一个表格。</p>
 <p>(1)首先我们给每个标签做一个标记，<code>&lt;h1&gt;&lt;a name=&quot;anchor&quot;&gt;Heading&lt;/a&gt;&lt;/h1&gt;</code>，anchor是标签的唯一标示，实现表达式如下，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:s:\(&lt;h[12]&gt;\)\(.*\s\+\([-a-zA-Z]\+\)\)\s*\(&lt;/h[12]&gt;\):\1&lt;a name=&quot;\3&quot;&gt;\2&lt;/a&gt;\4:</span><br></pre></td></tr></table></figure>
 <p>说明：</p>
@@ -717,16 +666,14 @@
 <p><code>s:/h[21]:br:</code></p>
 <p>现在文件的样子，</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"majorhead"</span> <span class="attr">name</span>=<span class="string">"anchor1"</span>&gt;</span>Heading1&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"minorhead"</span> <span class="attr">name</span>=<span class="string">"anchor2"</span>&gt;</span>Heading2&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">#（pingao注：我认为此时文件应该是这样的）</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"majorhead"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Heading1&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"minorhead"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Heading2&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>####6.3处理表格</p>
-<p>很多情况下，你需要处理表格形式的文本。例如，下面的文本，</p>
+<h4 id="6-3处理表格"><a href="#6-3处理表格" class="headerlink" title="6.3处理表格"></a>6.3处理表格</h4><p>很多情况下，你需要处理表格形式的文本。例如，下面的文本，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Asia    America  Africa   Europe</span><br><span class="line">Africa  Europe   Europe   Africa</span><br><span class="line">Europe  Asia     Europe   Europe</span><br><span class="line">Asia    America  Africa   Europe</span><br><span class="line">Africa  Europe   Asia     Africa</span><br><span class="line">Europe  Asia     Asia     Europe</span><br><span class="line">Europe  America  Africa   Asia</span><br><span class="line">Africa  Europe   Europe   Africa</span><br><span class="line">Europe  Asia     Europe   Europe</span><br></pre></td></tr></table></figure>
 <p>假设你想把第三列的”Europe”替换为 “Asia”，</p>
 <p><code>:%s:\(\(\w\+\s\+\)\{2}\)Europe:\1Asia:</code></p>
 <p>交换前两列，</p>
 <p><code>:%s:\(\w\+\)\(.*\s\+\)\(\w\+\)$:\3\2\1:</code></p>
 <p>未完待续…</p>
-<p>###7.其他语言正则表达式特点</p>
-<p>现在我将VIM的正则表达式与其他语言的正则表达式做一个对比，特别是Perl。提起正则表达式，Perl肯定不得不提。</p>
+<h3 id="7-其他语言正则表达式特点"><a href="#7-其他语言正则表达式特点" class="headerlink" title="7.其他语言正则表达式特点"></a>7.其他语言正则表达式特点</h3><p>现在我将VIM的正则表达式与其他语言的正则表达式做一个对比，特别是Perl。提起正则表达式，Perl肯定不得不提。</p>
 <p>（在Steve Kirkendall的帮助下整理）Perl和VIM的主要区别为，</p>
 <ul>
 <li>Perl的大多数元字符不需要反斜杠。个人认为，反斜杠越少越好，这样正则表达式会更加可读。</li>
@@ -734,8 +681,7 @@
 <li>Perl的正则表达式支持各种奇怪的选项。</li>
 <li>Perl的正则表达式可以包含变量，变量将会替换为具体的值，这称作”变量替换”。</li>
 </ul>
-<p>###8.链接</p>
-<p>在正常模式下，输入”:help pattern”，阅读VIM帮助文档的正则表达式和搜索章节。</p>
+<h3 id="8-链接"><a href="#8-链接" class="headerlink" title="8.链接"></a>8.链接</h3><p>在正常模式下，输入”:help pattern”，阅读VIM帮助文档的正则表达式和搜索章节。</p>
 <p>市场上有两本不错的介绍VIM正则表达式的书，</p>
 <ul>
 <li>“Learning the vi Editor” by Linda Lamb and Arnold Robbins.</li>
@@ -746,78 +692,6 @@
         
         </div>
         <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/11/14/VIM中的正则表达式/" data-id="cja0nfne80002vomptwepb6ab" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
             
     
 
@@ -826,6 +700,15 @@
     
         
 <nav id="article-nav">
+    
+        <a href="/2017/11/15/三生万物：决策树/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    三生万物：决策树
+                
+            </div>
+        </a>
     
     
         <a href="/2017/11/14/统计中的p值/" id="article-nav-older" class="article-nav-link-wrap">
@@ -853,7 +736,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术人生/">技术人生</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术人生/">技术人生</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -862,7 +745,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -871,7 +754,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/统计/" style="font-size: 10px;">统计</a>
+            <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/统计/" style="font-size: 20px;">统计</a> <a href="/tags/贝叶斯/" style="font-size: 10px;">贝叶斯</a>
         </div>
     </div>
 
@@ -884,7 +767,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2017 wocanmei<br>
+            &copy; 2017 pingao777<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
@@ -893,18 +776,6 @@
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
     
     
         <script type="text/x-mathjax-config">
