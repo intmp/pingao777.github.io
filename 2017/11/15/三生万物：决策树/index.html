@@ -6,7 +6,7 @@
     <title>三生万物：决策树 | 瞎说</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="一、概述不知怎么回事，提到决策树我就想起”道生一，一生二，二生三，三生万物“这句话，大概是因为决策树从一个根节点慢慢“长”成一棵树，也要经历“一生二，二生三”的过程。决策树本质上就是一种二叉树，根据特定的标准不停的分成左右两个子树，直到符合某种条件停止。树算法解释性强、简单直观以及接近人的决策方式使它成为流行的机器学习算法之一。当决策树与装袋法(Bag)、提升法(Boosting)结合之后，可以成">
-<meta name="keywords" content="机器学习,决策树">
+<meta name="keywords" content="决策树,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三生万物：决策树">
 <meta property="og:url" content="https://pingao777.github.io/2017/11/15/三生万物：决策树/index.html">
@@ -164,11 +164,11 @@ ga('send', 'pageview');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                8
+                9
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                9
+                10
                 <span>标签</span>
             </div>
         </div>
@@ -233,8 +233,8 @@ ga('send', 'pageview');
 <p>$$RSS = \frac{1}{N}\sum_{i=1}^N(y_i - \bar{y})^2$$</p>
 <p>$\bar{y}$代表平均响应值，可以看到这实际上就是方差，我们都知道方差是衡量数据变异性的量，因此RSS越小表示回归模型效果越好。</p>
 <p>注意上面的纯度、互熵以及残差平方和均是树的一个分枝上的值，总的值要对左右分枝进行加权平均，例如基尼系数的最终值应该这样计算，</p>
-<p>$$G<em>{total} = \frac{N</em>{left}}{N} G<em>{left} + \frac{N</em>{right}}{N} G_{right}$$</p>
-<p>$N$表示总的样本数，$N<em>{left}$，$N</em>{right}$分别代表左分枝和右分枝的样本数，互熵和残差平方和的计算方式类似。</p>
+<p>$$G_{total} = \frac{N_{left}}{N} G_{left} + \frac{N_{right}}{N} G_{right}$$</p>
+<p>$N$表示总的样本数，$N_{left}$，$N_{right}$分别代表左分枝和右分枝的样本数，互熵和残差平方和的计算方式类似。</p>
 <p>说了如何分，那什么时候停呢？一般的惯例是子树中的预测变量或响应值都一样了就可以停止分裂了。有时候这个条件可能有些苛刻，这时候可以设置一个Node Size值，表示叶子节点包含的最小的样本数。分裂过程中如果一个子树的样本数小于等于这个值就停止分裂，分类数取数目最多的那个类，回归树取响应的均值。</p>
 <p>说了这么多，下面举个例子，来演示下决策树算法，比如这里有一份城市和农村儿童身高数据，注意这里的数据都是我杜撰的，只是为了演示决策树的算法。如果已知一个儿童身高和性别，如何判断所处的区域？</p>
 <table>
@@ -438,7 +438,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术人生/">技术人生</a><span class="category-list-count">8</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术人生/">技术人生</a><span class="category-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -447,7 +447,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">8</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -456,7 +456,7 @@ ga('send', 'pageview');
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/统计/" style="font-size: 20px;">统计</a> <a href="/tags/贝叶斯/" style="font-size: 10px;">贝叶斯</a>
+            <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/统计/" style="font-size: 20px;">统计</a> <a href="/tags/贝叶斯/" style="font-size: 10px;">贝叶斯</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a>
         </div>
     </div>
 
