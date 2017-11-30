@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="瞎说">
 <meta property="og:description" content="相信每个Java程序员对泛型都不陌生，不少人也用过泛型，但是泛型中确实有些点容易让人迷惑，下面我结合自己的使用经历和理解谈谈对泛型的认识，不求面面俱到，但求切中要害。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-30T07:48:54.016Z">
+<meta property="og:updated_time" content="2017-11-30T10:42:54.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Java泛型">
 <meta name="twitter:description" content="相信每个Java程序员对泛型都不陌生，不少人也用过泛型，但是泛型中确实有些点容易让人迷惑，下面我结合自己的使用经历和理解谈谈对泛型的认识，不求面面俱到，但求切中要害。">
@@ -239,7 +239,7 @@ ga('send', 'pageview');
 <h4 id="4、替换原则"><a href="#4、替换原则" class="headerlink" title="4、替换原则"></a>4、替换原则</h4><p>一个类型的变量可以接受子类型的变量，一个据有某种参数的方法可以在参数的子类型上调用。这个原则几乎是面向对象编程的基础，它可以让我们这么写代码，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Fruit a = <span class="keyword">new</span> Apple();</span><br><span class="line">List l = <span class="keyword">new</span> ArrayList();</span><br></pre></td></tr></table></figure>
 <p>可以把一个“苹果”赋值给“水果”，可以把<code>ArrayList</code>赋值给<code>List</code>。</p>
-<h4 id="5、读写原则"><a href="#5、读写原则" class="headerlink" title="5、读写原则"></a>5、读写原则</h4><p>也就是所谓的PECS(Producer Extends, Consumer Super)原则，作为生产者时使用<code>extends</code>，作为消费者时使用<code>super</code>，这条原则其实是替换原则的推论。</p>
+<h4 id="5、PECS原则"><a href="#5、PECS原则" class="headerlink" title="5、PECS原则"></a>5、PECS原则</h4><p>也就是所谓的Producer Extends, Consumer Super原则，作为生产者时使用<code>extends</code>，作为消费者时使用<code>super</code>，这条原则其实是替换原则的推论。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;??&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">1.3</span>, <span class="number">5L</span>);</span><br><span class="line">Number i = list.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">Map&lt;String, ??r&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"212"</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>比如你想要从<code>list</code>中取出的数据可以赋值给一个<code>Number</code>，根据替换原则，“一个类型的变量可以接受子类型的变量”，你就得定义<code>list</code>中的类型都是<code>Number</code>的子类型。那么如何表示一个<code>Number</code>的子类型呢，因为<code>extends</code>在Java中本来就表示继承的意思，所以很自然的想法就是<code>? extends Number</code>，这恰恰就是正确答案。</p>
 <p>再比如，你想在<code>map</code>值里存储各种数字，根据替换原则，“一个据有某种参数的方法可以在参数的子类型上调用”，也就是你想要<code>put</code>方法适用在各种数字类型上，“各种数字类型”是这里的“子类型”，所以你需要定义<code>map</code>的值是“各种数字类型”的父类型才可以，表示父类Java中同样有个关键字<code>super</code>，所以你可能猜想<code>? super Number</code>表示的就是这个意思，没错，答案就是这个。</p>
