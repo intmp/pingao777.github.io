@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://ozgrgjwvp.bkt.clouddn.com/iris%20tree.jpg">
 <meta property="og:image" content="http://ozgrgjwvp.bkt.clouddn.com/1-4%201-R2%20of%20different%20node%20size.png">
 <meta property="og:image" content="http://ozgrgjwvp.bkt.clouddn.com/1-5%20Regression%20relative%20deviation%20for%20houses.png">
-<meta property="og:updated_time" content="2017-11-17T01:39:04.263Z">
+<meta property="og:updated_time" content="2017-12-01T10:34:20.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三生万物：决策树">
 <meta name="twitter:description" content="一、概述不知怎么回事，提到决策树我就想起”道生一，一生二，二生三，三生万物“这句话，大概是因为决策树从一个根节点慢慢“长”成一棵树，也要经历“一生二，二生三”的过程。决策树本质上就是一种二叉树，根据特定的标准不停的分成左右两个子树，直到符合某种条件停止。树算法解释性强、简单直观以及接近人的决策方式使它成为流行的机器学习算法之一。当决策树与装袋法(Bag)、提升法(Boosting)结合之后，可以成">
@@ -229,12 +229,12 @@ ga('send', 'pageview');
 <p>另一种标准是<strong>互熵(Cross-entropy)</strong>，互熵的定义如下：</p>
 <p>$$D = -\sum_{k=1}^K\hat{p}_k\log\hat{p}_k$$</p>
 <p>由定义可以看到，和基尼系数类似，当$\hat{p}_k$接近0或1时，互熵也很小，划分的效果也越好。</p>
-<p>回归树则根据残差平方和RSS：</p>
-<p>$$RSS = \frac{1}{N}\sum_{i=1}^N(y_i - \bar{y})^2$$</p>
-<p>$\bar{y}$代表平均响应值，可以看到这实际上就是方差，我们都知道方差是衡量数据变异性的量，因此RSS越小表示回归模型效果越好。</p>
-<p>注意上面的纯度、互熵以及残差平方和均是树的一个分枝上的值，总的值要对左右分枝进行加权平均，例如基尼系数的最终值应该这样计算，</p>
+<p>回归树则根据方差：</p>
+<p>$$Variance = \frac{1}{N}\sum_{i=1}^N(y_i - \bar{y})^2$$</p>
+<p>$\bar{y}$代表平均响应值，我们都知道方差是衡量数据变异性的量，因此越小表示回归模型效果越好。</p>
+<p>注意上面的纯度、互熵以及方差均是树的一个分枝上的值，总的值要对左右分枝进行加权平均，例如基尼系数的最终值应该这样计算，</p>
 <p>$$G_{total} = \frac{N_{left}}{N} G_{left} + \frac{N_{right}}{N} G_{right}$$</p>
-<p>$N$表示总的样本数，$N_{left}$，$N_{right}$分别代表左分枝和右分枝的样本数，互熵和残差平方和的计算方式类似。</p>
+<p>$N$表示总的样本数，$N_{left}$，$N_{right}$分别代表左分枝和右分枝的样本数，互熵和方差的计算方式类似。</p>
 <p>说了如何分，那什么时候停呢？一般的惯例是子树中的预测变量或响应值都一样了就可以停止分裂了。有时候这个条件可能有些苛刻，这时候可以设置一个Node Size值，表示叶子节点包含的最小的样本数。分裂过程中如果一个子树的样本数小于等于这个值就停止分裂，分类数取数目最多的那个类，回归树取响应的均值。</p>
 <p>说了这么多，下面举个例子，来演示下决策树算法，比如这里有一份城市和农村儿童身高数据，注意这里的数据都是我杜撰的，只是为了演示决策树的算法。如果已知一个儿童身高和性别，如何判断所处的区域？</p>
 <table>
