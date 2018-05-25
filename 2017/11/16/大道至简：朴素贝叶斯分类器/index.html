@@ -6,7 +6,7 @@
     <title>大道至简：朴素贝叶斯分类器 | 瞎说</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="万物之始,大道至简,衍化至繁。 　　　　　　　——ifelse(is.element(this, 道德经), 道德经, unknown)  一、背景提到贝叶斯分类，首先来看下贝叶斯其人，贝叶斯(Thomas Bayes,1701—1761)英国牧师、业余数学家。可别小看了欧洲的牧师，孟德尔，被誉为“遗传学之父”也曾为一名神父，假如你不记得孟德尔是谁，那么你肯定记得高中生物上那个著名的豌豆实验。">
-<meta name="keywords" content="贝叶斯,机器学习">
+<meta name="keywords" content="机器学习,贝叶斯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大道至简：朴素贝叶斯分类器">
 <meta property="og:url" content="https://pingao777.github.io/2017/11/16/大道至简：朴素贝叶斯分类器/index.html">
@@ -94,19 +94,39 @@ ga('send', 'pageview');
             
             <div id="search-form-wrap">
 
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="Search" />
-    <button type="submit" class="search-form-submit"></button>
-</form>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:pingao777.github.io ' + keyword;
-        return false;
-    });
-})(jQuery);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
+<script src="/js/insight.js"></script>
 
 </div>
         </div>
@@ -127,19 +147,9 @@ ga('send', 'pageview');
                 
                 <td>
                     
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="Search" />
-    <button type="submit" class="search-form-submit"></button>
-</form>
-<script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:pingao777.github.io ' + keyword;
-        return false;
-    });
-})(jQuery);
-</script>
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
 
                 </td>
             </tr>
