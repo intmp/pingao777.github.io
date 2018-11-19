@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html  lang="zh">
 <head>
     <meta charset="utf-8">
-    
-    <title>当Python和R遇上北京二手房（上） | 瞎说</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>当Python和R遇上北京二手房（上） - 瞎说</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
     <meta name="description" content="最近忙活了一阵子，终于把房子的事情落实了，俗话说饱暖思淫欲，某天突发奇想能不能利用手头上的一些工具对北京的二手房数据捣鼓一下，看看能不能有一些有意思的发现？想到以前有点python经验，正巧最近也在看R，正好借此机会巩固一下，齐活，走起！">
 <meta name="keywords" content="R,Python,统计">
 <meta property="og:type" content="article">
@@ -28,211 +30,144 @@
 <meta name="twitter:title" content="当Python和R遇上北京二手房（上）">
 <meta name="twitter:description" content="最近忙活了一阵子，终于把房子的事情落实了，俗话说饱暖思淫欲，某天突发奇想能不能利用手头上的一些工具对北京的二手房数据捣鼓一下，看看能不能有一些有意思的发现？想到以前有点python经验，正巧最近也在看R，正好借此机会巩固一下，齐活，走起！">
 <meta name="twitter:image" content="http://ozgrgjwvp.bkt.clouddn.com/%E5%BD%93Python%E5%92%8CR%E9%81%87%E4%B8%8A%E5%8C%97%E4%BA%AC%E4%BA%8C%E6%89%8B%E6%88%BF/1-1.png">
-    
 
-    
 
-    
-        <link rel="icon" href="/favicon.ico" />
-    
 
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-    
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
     
     
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
 
-ga('create', 'UA-44085500-1', 'auto');
-ga('send', 'pageview');
-
-</script>
     
     
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
 
 
-</head>
+    
+    
 
-<body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">瞎说</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/.">主页</a>
-                
-                    <a class="main-nav-link" href="/archives">时间线</a>
-                
-                    <a class="main-nav-link" href="/categories">分类</a>
-                
-                    <a class="main-nav-link" href="/tags">标签</a>
-                
-                    <a class="main-nav-link" href="/about">关于我</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
+    
+    
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44085500-1"></script>
 <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-44085500-1');
 </script>
-<script src="/js/insight.js"></script>
 
-</div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/.">主页</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">时间线</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">分类</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">标签</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">关于我</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-    </div>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
-
-        <div class="outer">
-            
-                
-
-<aside id="profile">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
-            <h2 id="name">pingao777</h2>
-            <h3 id="title">Web Developer</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Beijing</span>
-            <a id="follow" target="_blank" href="http://github.com/pingao777">关注我</a>
-        </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                24
-                <span>文章</span>
-            </div>
-            <div class="article-info-block">
-                30
-                <span>标签</span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-            
-            <section id="main"><article id="post-当Python和R遇上北京二手房（上）" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
     
-        <h1 class="article-title" itemprop="name">
-            当Python和R遇上北京二手房（上）
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-1-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="当Python和R遇上北京二手房（上）" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-12 has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-11-16T13:48:19.000Z">2017-11-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/技术人生/">技术人生</a>
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                当Python和R遇上北京二手房（上）
+            
         </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/16/当Python和R遇上北京二手房（上）/">
-            <time datetime="2017-11-16T13:48:19.000Z" itemprop="datePublished">2017-11-16</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/技术人生/">技术人生</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/R/">R</a>, <a class="tag-link" href="/tags/统计/">统计</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
+        <div class="content">
             <blockquote>
 <p>最近忙活了一阵子，终于把房子的事情落实了，俗话说饱暖思淫欲，某天突发奇想能不能利用手头上的一些工具对北京的二手房数据捣鼓一下，看看能不能有一些有意思的发现？想到以前有点python经验，正巧最近也在看R，正好借此机会巩固一下，齐活，走起！</p>
 </blockquote>
@@ -255,7 +190,7 @@ ga('send', 'pageview');
 </li>
 </ol>
 <p>整理完共有29790条数据，这是数据的结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## &apos;data.frame&apos;:	29790 obs. of  17 variables:</span><br><span class="line">##  $ area     : Factor w/ 15 levels &quot;昌平&quot;,&quot;朝阳&quot;,..: 2 13 7 7 15 5 6 14 2 11 ...</span><br><span class="line">##  $ region   : Factor w/ 5139 levels &quot;@北京&quot;,&quot;10AM新坐标&quot;,..: 674 2299 1789 1955 1063 463 2764 407 2480 2601 ...</span><br><span class="line">##  $ zone     : Ord.factor w/ 53 levels &quot;0室0厅&quot;&lt;&quot;0室1厅&quot;&lt;..: 12 27 12 6 11 16 11 6 6 16 ...</span><br><span class="line">##  $ meters   : int  67 408 75 47 83 136 68 57 55 128 ...</span><br><span class="line">##  $ direction: Factor w/ 50 levels &quot;&quot;,&quot;北&quot;,&quot;北东北&quot;,..: 40 26 27 26 26 27 27 26 2 27 ...</span><br><span class="line">##  $ con      : Factor w/ 221 levels &quot;CBD二手房&quot;,&quot;安定门二手房&quot;,..: 169 158 132 207 196 215 189 201 73 114 ...</span><br><span class="line">##  $ floor    : Ord.factor w/ 4 levels &quot;地下室&quot;&lt;&quot;低楼层&quot;&lt;..: 2 2 2 4 3 2 3 4 3 3 ...</span><br><span class="line">##  $ year     : int  2000 2002 1996 1997 2007 2010 2011 2008 2000 1998 ...</span><br><span class="line">##  $ school   : Ord.factor w/ 2 levels &quot;无学区&quot;&lt;&quot;有学区&quot;: 2 2 1 1 1 1 1 1 1 1 ...</span><br><span class="line">##  $ subway   : Ord.factor w/ 2 levels &quot;无地铁&quot;&lt;&quot;有地铁&quot;: 2 1 2 1 1 1 1 2 2 1 ...</span><br><span class="line">##  $ tax      : Factor w/ 2 levels &quot;非免税&quot;,&quot;满五年唯一&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span><br><span class="line">##  $ num      : int  360 950 290 260 95 350 220 120 180 205 ...</span><br><span class="line">##  $ price    : int  53732 23285 38667 54622 11446 25736 32353 21053 32728 16016 ...</span><br><span class="line">##  $ meters_cg: Ord.factor w/ 5 levels &quot;0~50&quot;&lt;&quot;50~100&quot;&lt;..: 2 5 2 1 2 3 2 2 2 3 ...</span><br><span class="line">##  $ year_cg  : Ord.factor w/ 7 levels &quot;&lt;1990&quot;&lt;&quot;90~95&quot;&lt;..: 4 4 3 3 5 6 6 5 4 3 ...</span><br><span class="line">##  $ num_cg   : Ord.factor w/ 11 levels &quot;0~1&quot;&lt;&quot;1~2&quot;&lt;&quot;2~3&quot;&lt;..: 4 10 3 3 1 4 3 2 2 3 ...</span><br><span class="line">##  $ price_cg : Ord.factor w/ 11 levels &quot;0~1万&quot;&lt;&quot;1~2万&quot;&lt;..: 6 3 4 6 2 3 4 3 4 2 ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## &apos;data.frame&apos;:	29790 obs. of  17 variables:</span><br><span class="line">##  $ area     : Factor w/ 15 levels &quot;昌平&quot;,&quot;朝阳&quot;,..: 2 13 7 7 15 5 6 14 2 11 ...</span><br><span class="line">##  $ region   : Factor w/ 5139 levels &quot;@北京&quot;,&quot;10AM新坐标&quot;,..: 674 2299 1789 1955 1063 463 2764 407 2480 2601 ...</span><br><span class="line">##  $ zone     : Ord.factor w/ 53 levels &quot;0室0厅&quot;&lt;&quot;0室1厅&quot;&lt;..: 12 27 12 6 11 16 11 6 6 16 ...</span><br><span class="line">##  $ meters   : int  67 408 75 47 83 136 68 57 55 128 ...</span><br><span class="line">##  $ direction: Factor w/ 50 levels &quot;&quot;,&quot;北&quot;,&quot;北东北&quot;,..: 40 26 27 26 26 27 27 26 2 27 ...</span><br><span class="line">##  $ con      : Factor w/ 221 levels &quot;CBD二手房&quot;,&quot;安定门二手房&quot;,..: 169 158 132 207 196 215 189 201 73 114 ...</span><br><span class="line">##  $ floor    : Ord.factor w/ 4 levels &quot;地下室&quot;&lt;&quot;低楼层&quot;&lt;..: 2 2 2 4 3 2 3 4 3 3 ...</span><br><span class="line">##  $ year     : int  2000 2002 1996 1997 2007 2010 2011 2008 2000 1998 ...</span><br><span class="line">##  $ school   : Ord.factor w/ 2 levels &quot;无学区&quot;&lt;&quot;有学区&quot;: 2 2 1 1 1 1 1 1 1 1 ...</span><br><span class="line">##  $ subway   : Ord.factor w/ 2 levels &quot;无地铁&quot;&lt;&quot;有地铁&quot;: 2 1 2 1 1 1 1 2 2 1 ...</span><br><span class="line">##  $ tax      : Factor w/ 2 levels &quot;非免税&quot;,&quot;满五年唯一&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span><br><span class="line">##  $ num      : int  360 950 290 260 95 350 220 120 180 205 ...</span><br><span class="line">##  $ price    : int  53732 23285 38667 54622 11446 25736 32353 21053 32728 16016 ...</span><br><span class="line">##  $ meters_cg: Ord.factor w/ 5 levels &quot;0~50&quot;&lt;&quot;50~100&quot;&lt;..: 2 5 2 1 2 3 2 2 2 3 ...</span><br><span class="line">##  $ year_cg  : Ord.factor w/ 7 levels &quot;&lt;1990&quot;&lt;&quot;90~95&quot;&lt;..: 4 4 3 3 5 6 6 5 4 3 ...</span><br><span class="line">##  $ num_cg   : Ord.factor w/ 11 levels &quot;0~1&quot;&lt;&quot;1~2&quot;&lt;&quot;2~3&quot;&lt;..: 4 10 3 3 1 4 3 2 2 3 ...</span><br><span class="line">##  $ price_cg : Ord.factor w/ 11 levels &quot;0~1万&quot;&lt;&quot;1~2万&quot;&lt;..: 6 3 4 6 2 3 4 3 4 2 ...</span><br></pre></td></tr></table></figure>
 <h3 id="三、数据概览"><a href="#三、数据概览" class="headerlink" title="三、数据概览"></a>三、数据概览</h3><p>下面从总体上看下数据，</p>
 <p>1.县区分布</p>
 <p><img src="http://ozgrgjwvp.bkt.clouddn.com/%E5%BD%93Python%E5%92%8CR%E9%81%87%E4%B8%8A%E5%8C%97%E4%BA%AC%E4%BA%8C%E6%89%8B%E6%88%BF/1-1.png" alt=""></p>
@@ -301,125 +236,236 @@ ga('send', 'pageview');
 <p>密度图（单位元）显示还有30万一平方的房子，赶紧看看是何方宝地，原来是两套5平方的学区房，好吧，喝口水压压惊。不过好在单价主要还是集中在1 ~ 5万的区间，约占80%，其中2 ~ 4万最多，约为总量的50%。</p>
 <p>上面大致看了下数据的总体情况，并尝试对一些原因做了分析，当然有些只是推测，这段时间比较忙，正好趁阅兵放假的时间看看能不能从数据中发现一些有利的证据。</p>
 
-        
         </div>
-        <footer class="article-footer">
-            
-    
-
-        </footer>
-    </div>
-    
         
-<nav id="article-nav">
-    
-        <a href="/2017/11/16/当Python和R遇上北京二手房（下）/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/R/">R</a>, <a class="has-link-grey -link" href="/tags/统计/">统计</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#......' async='async'></script>
+
+        
+    </div>
+</div>
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/11/16/当Python和R遇上北京二手房（下）/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">当Python和R遇上北京二手房（下）</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/11/16/大道至简：朴素贝叶斯分类器/">
+                <span class="level-item">大道至简：朴素贝叶斯分类器</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: '0uUtzN1bmW45lEsXVGDMaekE-gzGzoHsz',
+        app_key: 'SiD0cv45eP3ptV9yXuif6K9V',
+        placeholder: 'cn dota best dota'
+    });
+</script>
+
+    </div>
+</div>
+</div>
                 
-                    当Python和R遇上北京二手房（下）
                 
             </div>
-        </a>
-    
-    
-        <a href="/2017/11/16/大道至简：朴素贝叶斯分类器/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">大道至简：朴素贝叶斯分类器</div>
-        </a>
-    
-</nav>
-
-
-    
-</article>
-
-
-    
-    
-        <section id="comments">
-    <div id="valine-thread"></div>
-</section>
-    
-
-
-</section>
-            
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
                 
-<aside id="sidebar">
-   
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">分类</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/七七八八/">七七八八</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术人生/">技术人生</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活生活/">生活生活</a><span class="category-list-count">2</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">10</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">标签云</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/2018/" style="font-size: 10px;">2018</a> <a href="/tags/Dota/" style="font-size: 10px;">Dota</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Vim/" style="font-size: 20px;">Vim</a> <a href="/tags/alpha-beta/" style="font-size: 10px;">alpha-beta</a> <a href="/tags/minimax/" style="font-size: 10px;">minimax</a> <a href="/tags/五子棋/" style="font-size: 10px;">五子棋</a> <a href="/tags/侏罗纪公园/" style="font-size: 10px;">侏罗纪公园</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/加密/" style="font-size: 15px;">加密</a> <a href="/tags/备忘/" style="font-size: 10px;">备忘</a> <a href="/tags/数据挖掘/" style="font-size: 10px;">数据挖掘</a> <a href="/tags/日志/" style="font-size: 10px;">日志</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/碟中谍/" style="font-size: 10px;">碟中谍</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/统计/" style="font-size: 20px;">统计</a> <a href="/tags/解密/" style="font-size: 15px;">解密</a> <a href="/tags/计划/" style="font-size: 10px;">计划</a> <a href="/tags/贝叶斯/" style="font-size: 10px;">贝叶斯</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a>
-        </div>
-    </div>
-
-    
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
-
+                    <img src="/images/logo.png" alt="当Python和R遇上北京二手房（上）" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2018 pingao777&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
             
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2018 pingao777<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
         </div>
     </div>
 </footer>
-        
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
     
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.6/dist/Valine.min.js"></script>
-    <script>
-        new Valine({
-            el: '#valine-thread' ,
-            notify:false,
-            verify:false,
-            app_id: '0uUtzN1bmW45lEsXVGDMaekE-gzGzoHsz',
-            app_key: 'SiD0cv45eP3ptV9yXuif6K9V',
-            placeholder: 'cn dota best dota'
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         });
-    </script>
-
-
+    });
+</script>
 
 
     
     
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+
     
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
     
 
 
+<script src="/js/main.js" defer></script>
 
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
     </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 </body>
 </html>
