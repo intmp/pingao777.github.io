@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="瞎说">
 <meta property="og:description" content="子串检索有着很广泛的应用，例如在文档软件中查找关键词，网站过滤敏感词，生物学家查找某种模式的基因组序列等等，很多人听说过著名的KMP算法，Boyer-Moore算法做到的更多，有迹象表明在某些情况下效率是前者的3-5倍，且实现起来更加简单，符合我简单高效的原则。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.blog.csdn.net/20160731213353626">
-<meta property="og:image" content="http://img.blog.csdn.net/20160731213449705">
-<meta property="og:updated_time" content="2017-11-17T01:38:29.076Z">
+<meta property="og:image" content="https://wocanmei-hexo.nos-eastchina1.126.net/%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E7%9A%84Boyer-Moore%E7%AE%97%E6%B3%95/1-random%20string.png">
+<meta property="og:image" content="https://wocanmei-hexo.nos-eastchina1.126.net/%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E7%9A%84Boyer-Moore%E7%AE%97%E6%B3%95/2-repeat%20string.png">
+<meta property="og:updated_time" content="2018-11-22T08:26:11.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简洁高效的Boyer-Moore算法">
 <meta name="twitter:description" content="子串检索有着很广泛的应用，例如在文档软件中查找关键词，网站过滤敏感词，生物学家查找某种模式的基因组序列等等，很多人听说过著名的KMP算法，Boyer-Moore算法做到的更多，有迹象表明在某些情况下效率是前者的3-5倍，且实现起来更加简单，符合我简单高效的原则。">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160731213353626">
+<meta name="twitter:image" content="https://wocanmei-hexo.nos-eastchina1.126.net/%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E7%9A%84Boyer-Moore%E7%AE%97%E6%B3%95/1-random%20string.png">
 
 
 
@@ -179,7 +179,7 @@
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">             i=<span class="hljs-number">13</span></span><br><span class="line">ABCSAKDFFEFKJDDEFKLD</span><br><span class="line">             DDEFK</span><br><span class="line">                 j=<span class="hljs-number">4</span></span><br><span class="line">                j=<span class="hljs-number">3</span></span><br><span class="line">               j=<span class="hljs-number">2</span></span><br><span class="line">              j=<span class="hljs-number">1</span></span><br><span class="line">             j=<span class="hljs-number">0</span></span><br></pre></td></tr></table></figure>
 <p>这样i移动5次，总共比较了12个字符，就完成了查找。</p>
 <p>总结一下，BM算法的策略是从后往前匹配模式中的每个字符，直到文本中出现一个不匹配的字符<code>txt.charAt(i+j)</code>或者检索成功返回i。与暴力检索不同的是，当匹配失败时，BM算法不会按部就班的移动i，它首先会构造一个right数组，数组中存储的是字符集中每个字符在模式中最右边的位置，如果字符不在模式中设为-1，比如上面的例子，</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">right[<span class="hljs-string">'D'</span>]=<span class="hljs-number">1</span></span><br><span class="line">right[<span class="hljs-string">'E'</span>]=<span class="hljs-number">2</span>            </span><br><span class="line">right[<span class="hljs-string">'F'</span>]=<span class="hljs-number">3</span>         </span><br><span class="line">right[<span class="hljs-string">'K'</span>]=<span class="hljs-number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">right[<span class="hljs-string">'D'</span>]=<span class="hljs-number">1</span></span><br><span class="line">right[<span class="hljs-string">'E'</span>]=<span class="hljs-number">2</span></span><br><span class="line">right[<span class="hljs-string">'F'</span>]=<span class="hljs-number">3</span></span><br><span class="line">right[<span class="hljs-string">'K'</span>]=<span class="hljs-number">4</span></span><br></pre></td></tr></table></figure>
 <p>下面是可能出现的三种情形，</p>
 <ul>
 <li><p>当非匹配字符<code>txt.charAt(i+j)</code>不在模式中时，就像上面第一步那样，i需要右移j+1个字符，否则非匹配字符就会与模式字符串的某个字符重叠。</p>
@@ -198,9 +198,9 @@
 <p>每次匹配成功，需要重置delta数组，即上面<code>resetDelta()</code>。将这段代码与上面那一版进行对比，看看有哪些区别。完整代码在<a href="https://github.com/pingao777/Algorithms/blob/master/src/main/java/com/pingao/string/BoyerMoore.java" target="_blank" rel="external">这里</a>，用这一段代码再运行上面的例子，</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">txt length: <span class="hljs-number">20</span></span><br><span class="line">pat length: <span class="hljs-number">5</span></span><br><span class="line">--------------------</span><br><span class="line">BBBBBBBBBBBBBBBBBBBB</span><br><span class="line">ABBBB <span class="hljs-comment">#0 0</span></span><br><span class="line">     ABBBB <span class="hljs-comment">#1 5</span></span><br><span class="line">          ABBBB <span class="hljs-comment">#2 10</span></span><br><span class="line">               ABBBB <span class="hljs-comment">#3 15</span></span><br></pre></td></tr></table></figure>
 <p>这次好多了，i移动了3次，只比较了15个字符，就完成了整个检索，算法复杂度基本为线性。好了，算法分析与证明不是那么有意思，最后就以我做的两个实验来结束吧。</p>
-<p><img src="http://img.blog.csdn.net/20160731213353626" alt=""></p>
+<p><img src="https://wocanmei-hexo.nos-eastchina1.126.net/%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E7%9A%84Boyer-Moore%E7%AE%97%E6%B3%95/1-random%20string.png" alt=""></p>
 <p>横轴为文本长度，纵轴表示比较的字符数，文本和模式从26个大写字母随机生成。可以看到，对于长度为10的模式，BM算法复杂度大约为$O(N/M)$，暴力检索为$O(N)$。</p>
-<p><img src="http://img.blog.csdn.net/20160731213449705" alt=""></p>
+<p><img src="https://wocanmei-hexo.nos-eastchina1.126.net/%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E7%9A%84Boyer-Moore%E7%AE%97%E6%B3%95/2-repeat%20string.png" alt=""></p>
 <p>与上图不同，这幅图的文本和模式是从4个大写字母随机选择，因此重复率要高的多。可以看到，对于重复率很高的字符串，BM算法效率也能达到$O(N)$，而暴力检索接近$O(NM)$。</p>
 
         </div>
