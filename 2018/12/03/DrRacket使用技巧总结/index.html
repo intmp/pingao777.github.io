@@ -7,18 +7,18 @@
 
 
 
-    <meta name="description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4) max-two.scm12345678910#lang sicp;; 千万别忘了这一句(#%provide (all-def">
+    <meta name="description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4)">
 <meta name="keywords" content="DrRacket,LISP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DrRacket使用技巧总结">
 <meta property="og:url" content="https://pingao777.github.io/2018/12/03/DrRacket使用技巧总结/index.html">
 <meta property="og:site_name" content="瞎说">
-<meta property="og:description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4) max-two.scm12345678910#lang sicp;; 千万别忘了这一句(#%provide (all-def">
+<meta property="og:description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-03T06:42:47.399Z">
+<meta property="og:updated_time" content="2018-12-06T10:04:41.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DrRacket使用技巧总结">
-<meta name="twitter:description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4) max-two.scm12345678910#lang sicp;; 千万别忘了这一句(#%provide (all-def">
+<meta name="twitter:description" content="引用其他文件的函数假设test.scm想引用max-two.scm中的一个函数max-two，可以这样， test.scm123456#lang sicp(#%require rackunit)(#%require &quot;max-two.scm&quot;)(max-two 2 3 4)">
 
 
 
@@ -87,7 +87,6 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/fonts.css">
 
 </head>
 <body class="is-1-column">
@@ -159,8 +158,9 @@
             
         </h1>
         <div class="content">
-            <h3 id="引用其他文件的函数"><a href="#引用其他文件的函数" class="headerlink" title="引用其他文件的函数"></a>引用其他文件的函数</h3><p>假设test.scm想引用max-two.scm中的一个函数max-two，可以这样，</p>
+            <h2 id="引用其他文件的函数"><a href="#引用其他文件的函数" class="headerlink" title="引用其他文件的函数"></a>引用其他文件的函数</h2><p>假设test.scm想引用max-two.scm中的一个函数max-two，可以这样，</p>
 <p>test.scm<br><figure class="highlight scheme hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#lang sicp</span><br><span class="line"></span><br><span class="line">(#%require rackunit)</span><br><span class="line">(#%require <span class="hljs-string">"max-two.scm"</span>)</span><br><span class="line"></span><br><span class="line">(<span class="hljs-name">max-two</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>max-two.scm<br><figure class="highlight scheme hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#lang sicp</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">;; 千万别忘了这一句</span></span><br><span class="line">(#%provide (<span class="hljs-name">all-defined</span>))</span><br><span class="line"></span><br><span class="line">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">max-two</span> x y z)</span><br><span class="line">  (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">min-three</span> x y z)</span><br><span class="line">    (<span class="hljs-name"><span class="hljs-builtin-name">cond</span></span> ((<span class="hljs-name"><span class="hljs-builtin-name">&gt;=</span></span> x y) (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;=</span></span> y z) z y))</span><br><span class="line">          (<span class="hljs-name"><span class="hljs-builtin-name">else</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;=</span></span> x z) z x))))</span><br><span class="line">  (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x y z) (<span class="hljs-name">min-three</span> x y z)))</span><br></pre></td></tr></table></figure></p>
 
         </div>
