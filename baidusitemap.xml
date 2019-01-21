@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>https://pingao777.github.io/2019/01/21/%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90Andrew-Ng%E7%9A%84%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/</loc>
+    <lastmod>2019-01-21T12:03:16.037Z</lastmod>
+    <data>
+        <display>
+        <title>强烈推荐Andrew Ng的机器学习课程</title>
+        <pubTime>2019-01-21T10:11:07.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>Coursera</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术人生" url="https://pingao777.github.io/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://pingao777.github.io/2018/08/04/%E8%B0%81%E8%AF%B4%E5%A4%A7%E8%B1%A1%E4%B8%8D%E8%83%BD%E8%B7%B3%E8%88%9E%EF%BC%9A%E5%9F%BA%E4%BA%8EJava%E7%9A%84Markdown%E9%A2%84%E8%A7%88%E6%8F%92%E4%BB%B6/</loc>
@@ -12,13 +34,13 @@
         <title>谁说大象不能跳舞：基于Java的Markdown预览插件</title>
         <pubTime>2018-08-04T03:49:59.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>Vim</tag>
          
         <tag>Markdown</tag>
          
         <tag>Python</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -38,9 +60,9 @@
         <title>终于修完Algorithm了</title>
         <pubTime>2018-12-16T12:11:32.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>Coursera</tag>
+         
+        <tag>算法</tag>
          
          
            
@@ -308,9 +330,9 @@
         <title>三生万物：决策树</title>
         <pubTime>2017-11-11T08:53:19.000Z</pubTime>
         
-        <tag>决策树</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>决策树</tag>
          
          
            
